@@ -3,6 +3,7 @@ import fs from "node:fs";
 
 const here = new URL(".", import.meta.url).pathname,
   NET = JSON.parse(fs.readFileSync(here + "hoodie-net.json"));
+export const DUFFLE_SIDE = { panel: [1.57, 3.57, 25.48, 14.38], straps: [[7.71, 9.07], [18.0, 19.34]], safe: [[2.35, 4.32, 6.96, 13.6], [9.83, 4.32, 17.25, 13.6], [20.15, 4.32, 24.73, 13.6]] }; // inches on the 27.1 × 18 canvas, measured off the designer
 export const C = { indigo: "#4f46e5", sky: "#0ea5e9", ink: "#111827", text: "#15151b", white: "#f4f4f5", night: "#0b0d17", url: "#93b4f8" };
 let uid = 0;
 const f = (n) => +n.toFixed(4),
@@ -165,18 +166,21 @@ export const pieces = {
         found({ pts, r: 0.13, lw: 0.04 }) + lockup(6.1, 12.95, 0.78, { dark: true });
     }
   },
-  // Apophenia Duffle Bag (blank: All-Over Print Duffle Bag), long side (22×11.5). The mark in the noise, and one of its diagonals keeps going, out towards the ends of the bag.
-  // The extended line is Morse: "not crazy" one way, "apophenia" the other.
+  // Apophenia Duffle Bag (blank: All-Over Print Duffle Bag), long sides (front and back). Drawn on Fourthwall's designer canvas for that panel,
+  // 27.1 × 18 in (it scales any file to cover this canvas): the printed panel is the middle 23.9 × 10.8 in, two straps are sewn over it, and
+  // there are three safe areas (left, centre, right). The mark in the noise sits in the centre one; one of its diagonals carries on, as Morse:
+  // "not crazy" one way, "apophenia" the other. Everything that matters stays inside the centre safe area, between the straps.
   "duffle-front": {
-    W: 22, H: 11.5, bg: C.night,
+    W: 27.1, H: 18, dpi: 250, bg: C.night,
     svg: () => {
-      const pts = markPts({ cx: 11.0, cy: 5.75, w: 2.8, h: 3.3, jit: 0.12, seed: 4 }), [, tr, bl, , c] = pts, e1 = onward(c, bl, 22, 11.5, 1.1), e2 = onward(c, tr, 22, 11.5, 1.1),
+      const pts = markPts({ cx: 13.55, cy: 8.97, w: 3.0, h: 3.5, jit: 0.12, seed: 4 }), [, tr, bl, , c] = pts,
+        toY = ([cx, cy], [px, py], y) => [px + ((px - cx) * (y - py)) / (py - cy), y], e1 = toY(c, bl, 12.95), e2 = toY(c, tr, 4.9),
         seg = ([ax, ay], [bx, by], g = 0.3) => { const L = Math.hypot(bx - ax, by - ay); return [ax + ((bx - ax) * g) / L, ay + ((by - ay) * g) / L, bx - ((bx - ax) * g) / L, by - ((by - ay) * g) / L]; },
         // dots never wider than one Morse unit, so the gaps stay readable
         dash = (msg, a, b) => { const s = seg(a, b); return morse(msg, ...s, { w: Math.min(0.05, Math.hypot(s[2] - s[0], s[3] - s[1]) / morseUnits(msg).len), color: C.url, opacity: 0.8 }); };
-      return `<rect width="22" height="11.5" fill="${C.night}"/>` + noise({ box: [0, 0, 22, 11.5], n: 560, seed: 14, r: 0.16, pts, lines: [[bl, e1], [tr, e2]], clear: 0.2, avoid: [[20.2, 10.75, 1.4]] }) +
+      return `<rect width="27.1" height="18" fill="${C.night}"/>` + noise({ box: [0, 0, 27.1, 18], n: 1050, seed: 14, r: 0.16, pts, lines: [[bl, e1], [tr, e2]], clear: 0.2, avoid: [[23.3, 13.1, 1.4]] }) +
         dash("not crazy", bl, e1) + dash("apophenia", tr, e2) +
-        [e1, e2].map(([x, y]) => `<circle cx="${f(x)}" cy="${f(y)}" r="0.12" fill="#fff"/>`).join("") + found({ pts, r: 0.12, lw: 0.035 }) + word(21.2, 10.85, 0.34, C.white, "end", `fill-opacity=".8"`);
+        [e1, e2].map(([x, y]) => `<circle cx="${f(x)}" cy="${f(y)}" r="0.12" fill="#fff"/>`).join("") + found({ pts, r: 0.12, lw: 0.035 }) + word(24.35, 13.25, 0.34, C.white, "end", `fill-opacity=".8"`);
     }
   },
   // Fill for every other bag panel (top, bottom, back, pocket) in the admin designer: the same night and noise, no mark. 24 in square, scale or crop to fit.

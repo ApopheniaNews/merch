@@ -85,6 +85,8 @@ faces = np.maximum.reduce([rounded_quad(img.shape, q, 20) for q in (end_q, top_q
 L = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY).astype(np.float32) / 255
 lit_top = rounded_quad(img.shape, top_q, 24) * cv2.GaussianBlur((L > 0.84).astype(np.float32), (5, 5), 0)  # white fabric GrabCut lost against the pale wall
 bag = np.minimum(np.maximum.reduce([bag, rounded_quad(img.shape, end_q, 30), lit_top]), cv2.dilate(faces, np.ones((9, 9), np.uint8)))
-end, side = warp_quad(ART("duffle-end"), end_q, img.shape), warp_quad(ART("duffle-front"), side_q, img.shape)
+# the long-side file is Fourthwall's whole designer canvas; only the panel in the middle of it is printed
+side_art = ART("duffle-front"); h, w = side_art.shape[:2]; side_art = side_art[int(h * 3.57 / 18):int(h * 14.38 / 18), int(w * 1.57 / 27.1):int(w * 25.48 / 27.1)]
+end, side = warp_quad(ART("duffle-end"), end_q, img.shape), warp_quad(side_art, side_q, img.shape)
 cv2.imwrite(f"{out}/duffle/mockup.jpg", composite(img, [(side[0], side[1] * bag), (end[0], end[1] * rounded_quad(img.shape, end_q, 30))], bag), [cv2.IMWRITE_JPEG_QUALITY, 92])
 print("ok")

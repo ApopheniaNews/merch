@@ -50,7 +50,7 @@ const STORE = "https://store.apophenia.news",
       hidden: "That line is Morse: <b>not crazy</b> one way, <b>apophenia</b> the other.",
       note: "Fourthwall can't build all-over-print bags through its API, so this one goes up through their admin designer. The mockup is a composite on their blank photo.",
       img: [["mockup.jpg", "Composite"], ["duffle-front-preview.png", "Long side", "#0b0d17"], ["duffle-end-preview.png", "End panel", "#0b0d17"]],
-      files: [["duffle-front.png", "Long side · 6600×3450 · 22 × 11.5 in"], ["duffle-end.png", "End panel · 3450×3450 · 11.5 in square"], ["duffle-fill.png", "Fill for the other panels · 4800 px, 24 in square"], ["board.png", "Approval board"]]
+      files: [["duffle-front.png", "Long sides, front and back · 6775×4500 · Fourthwall\u2019s 27.1 × 18 in canvas"], ["duffle-end.png", "End panel · 3450×3450 · 11.5 in square"], ["duffle-fill.png", "Fill for the other panels · 4800 px, 24 in square"], ["board.png", "Approval board"]]
     },
   ],
   logo = `<svg viewBox="0 0 120 120" width="40" height="40" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
