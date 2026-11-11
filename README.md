@@ -23,7 +23,7 @@ Headless Chromium does the rendering: it uses Playwright's `chromium_headless_sh
 ## Where things live
 
 - `src/designs.mjs` has the artwork for the mug, pint glass, clear bottle, steel bottle, backpack and duffle, drawn as SVG in inches. Each piece notes how it sits on its product.
-- `src/hoodie.mjs` is the zip hoodie in the store (listed as PATTERN SEEKER), ported unchanged from the old in-browser generator.
+- `src/hoodie.mjs` is PATTERN SEEKER, the zip hoodie in the store, ported unchanged from the old in-browser generator.
 - `src/fw.mjs` handles Fourthwall: upload a print file and get Fourthwall's own mockups back. This creates a draft design sketch, not a product.
   ```sh
   infisical run --projectId 608c2773-3282-442b-bd96-163e76fec19d --env prod --path /fourthwall -- \

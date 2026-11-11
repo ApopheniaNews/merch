@@ -1,4 +1,4 @@
-// Apophenia Zip Hoodie (listed in the store as PATTERN SEEKER; blank: Gildan Heavy Blend full-zip hoodie). Ported unchanged from the old in-browser generator (dark = black / sport grey garment).
+// PATTERN SEEKER, the zip hoodie in the store (blank: Gildan Heavy Blend full-zip hoodie). Ported unchanged from the old in-browser generator (dark = black / sport grey garment).
 // usage: node src/hoodie.mjs → art/hoodie/{front,back}.svg (fonts embedded, standalone) + .png at 300 dpi, transparent
 //   front: left chest, 4.00 × 1.13 in, mark + wordmark. back: centre, 11.00 × 7.00 in, constellation + tagline.
 // Fourthwall: Printed → DTFx. Front 4 in wide, top edge ~3 in below the collar seam; back 11 in wide, top edge ~4 in below it.
