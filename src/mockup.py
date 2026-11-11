@@ -2,10 +2,10 @@
 # The blank white bag photo supplies the shading: art is warped onto each panel, multiplied by the photo's light, and the black trims
 # (straps, zips, piping) are kept from the photo.
 # usage, from the repo root: uv run --no-project --with numpy --with opencv-python-headless python -I src/mockup.py src/blanks art
-import sys, cv2, numpy as np
+import re, sys, cv2, numpy as np
 
 blanks, out = sys.argv[1:3]
-ART = lambda n: cv2.imread(f"{out}/{n.split('-')[0]}/{n}.png", cv2.IMREAD_UNCHANGED)[..., :3].astype(np.float32) / 255
+ART = lambda n: cv2.imread(f"{out}/{re.sub(r'-(ink|white|front|end)$', '', n)}/{n}.png", cv2.IMREAD_UNCHANGED)[..., :3].astype(np.float32) / 255
 NIGHT = np.array([0x17, 0x0D, 0x0B], np.float32) / 255  # BGR of #0b0d17
 
 

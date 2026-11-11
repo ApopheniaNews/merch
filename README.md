@@ -22,9 +22,8 @@ Headless Chromium does the rendering: it uses Playwright's `chromium_headless_sh
 
 ## Where things live
 
-- `src/designs.mjs` has the artwork for the mug, pint, Thor, H2Go, backpack and duffle, drawn as SVG in inches. Each piece notes how it sits on its product.
-- `src/hoodie.mjs` is the Pattern Seeker hoodie in the store, ported unchanged from the old in-browser generator.
-- `src/pattern-seeker-2/` is the jungle hoodie proposal (`node src/pattern-seeker-2/build.mjs back --print`).
+- `src/designs.mjs` has the artwork for the mug, pint glass, clear bottle, steel bottle, backpack and duffle, drawn as SVG in inches. Each piece notes how it sits on its product.
+- `src/hoodie.mjs` is the zip hoodie in the store (listed as PATTERN SEEKER), ported unchanged from the old in-browser generator.
 - `src/fw.mjs` handles Fourthwall: upload a print file and get Fourthwall's own mockups back. This creates a draft design sketch, not a product.
   ```sh
   infisical run --projectId 608c2773-3282-442b-bd96-163e76fec19d --env prod --path /fourthwall -- \
@@ -35,13 +34,13 @@ Headless Chromium does the rendering: it uses Playwright's `chromium_headless_sh
 
 ## Fourthwall notes (learned from calibration grids)
 
-| Product | Template | Print file | Where it lands |
-|---|---|---|---|
-| White Glossy Mug | `pro_4v5OfYhyRx62KW5b7Oj6Uw` | 2700×1050 | Handle-left view shows about 0–35%, handle-right about 65–100%. Put one face at ~22% and the other at ~78%. |
-| Shaker Pint Glass | `pro_KLKGnobKR0u-aO6RghFzxA` | 2874×1512 | Full wrap, front at 50%, seam at 0/100% (the back). Anything on the back shows through the front, mirrored. |
-| Thor Clear Tritan | `pro_Ev93jJN7Sg2shZI9WjJKqg` | 2837×2858 | Full wrap of the body, front at 50%. The far side shows through. |
-| H2Go Bolt | `pro_lcY8lsUxT0abgQ35lT919g` | 2726×3262 | A ~5 in label on the lower body covering only the front half (~186°), front at 50%. Keep the core within ~30–70% and draw big. |
-| AOP Minimalist Backpack | `pro_f5fdfe4ae25248499e` | panels | No API rendering: set it up in the admin designer. |
-| AOP Duffle Bag | `pro_4cb50ea9e50d4f83be` | panels | No API rendering: set it up in the admin designer. |
+| Ours | Fourthwall blank | Template | Print file | Where it lands |
+|---|---|---|---|---|
+| Apophenia Mug | White Glossy Mug | `pro_4v5OfYhyRx62KW5b7Oj6Uw` | 2700×1050 | Handle-left view shows about 0–35%, handle-right about 65–100%. Put one face at ~22% and the other at ~78%. |
+| Apophenia Pint Glass | Shaker Pint Glass | `pro_KLKGnobKR0u-aO6RghFzxA` | 2874×1512 | Full wrap, front at 50%, seam at 0/100% (the back). Anything on the back shows through the front, mirrored. |
+| Apophenia Clear Bottle | Thor Clear Tritan Sports Bottle | `pro_Ev93jJN7Sg2shZI9WjJKqg` | 2837×2858 | Full wrap of the body, front at 50%. The far side shows through. |
+| Apophenia Steel Bottle | H2Go Bolt (black) | `pro_lcY8lsUxT0abgQ35lT919g` | 2726×3262 | A ~5 in label on the lower body covering only the front half (~186°), front at 50%. Keep the core within ~30–70% and draw big. |
+| Apophenia Backpack | All-Over Print Minimalist Backpack | `pro_f5fdfe4ae25248499e` | panels | No API rendering: set it up in the admin designer. |
+| Apophenia Duffle Bag | All-Over Print Duffle Bag | `pro_4cb50ea9e50d4f83be` | panels | No API rendering: set it up in the admin designer. |
 
 All the art is original. Nothing is taken from real-world data.

@@ -120,18 +120,19 @@ const font = (x, y, size, txt, fill, { w = 500, ls = "0.01em", anchor = "middle"
 
 // ───────────────────────────────── the products
 export const pieces = {
-  // White mug, 9×3.5 in wrap. Handle-left view shows ~0–35%, handle-right ~65–100%.
-  // Face A: the mark and name. Face B: the mark's skeleton pulled wide, nothing between — both bars are Morse for "not crazy".
+  // Apophenia Mug (Fourthwall blank: White Glossy Mug), 9×3.5 in wrap. Handle-left view shows ~0–35%, handle-right ~65–100%.
+  // Face A: the mark and name. Face B: the mark's skeleton pulled wide, nothing between. The bars are Morse: "apophenia" on top, "not crazy" below.
   mug: {
     W: 9, H: 3.5, bg: "#fff",
     svg: () => {
       const A = 2.0, B = 7.0, w = 2.4, h = 1.1, x0 = B - w / 2, x1 = B + w / 2, y0 = 1.75 - h / 2, y1 = 1.75 + h / 2, r = 0.07, g = 0.1, L = w - 2 * (r + g),
-        bar = (y) => morse("not crazy", x0 + r + g, y, x1 - r - g, y, { w: L / morseUnits("not crazy").len, color: C.ink, opacity: 0.85 });
-      return stacked(A, 0.98, 1.02, { size: 0.265, gap: 0.3 }) + bar(y0) + bar(y1) +
+        // both bars the same length and dot size; the shorter message just spaces out a little
+        bar = (msg, y) => morse(msg, x0 + r + g, y, x1 - r - g, y, { w: L / morseUnits("not crazy").len, color: C.ink, opacity: 0.85 });
+      return stacked(A, 0.98, 1.02, { size: 0.265, gap: 0.3 }) + bar("apophenia", y0) + bar("not crazy", y1) +
         [[x0, y0, C.indigo], [x1, y0, C.sky], [x0, y1, C.sky], [x1, y1, C.indigo]].map(([x, y, c]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`).join("");
     }
   },
-  // Shaker pint, 9.58×5.04 wrap, front at 50%. The hoodie's back constellation on the front, on its own. The mark + name go round the back,
+  // Apophenia Pint Glass (blank: Shaker Pint Glass), 9.58×5.04 wrap, front at 50%. The hoodie's back constellation on the front, on its own. The mark + name go round the back,
   // just beside the print seam (which sits at 0%/100%, so nothing straddles it), ~145° from the art.
   ...Object.fromEntries(["white", "ink"].map((v) => [`pint-${v}`, {
     W: 9.58, H: 5.04, bg: v === "white" ? "#1c1917" : "#fff",
@@ -141,25 +142,25 @@ export const pieces = {
         lockup(1.15, 4.05, 0.36, { dark, fill: dark ? "none" : "#fff" });  // low, so its mirror image seen through the glass falls below the art
     }
   }])),
-  // Thor clear Tritan, 9.46×9.53 wrap, front at 50%. A constellation runs all the way round; through the clear bottle the far side shows
+  // Apophenia Clear Bottle (blank: Thor Clear Tritan Sports Bottle), 9.46×9.53 wrap, front at 50%. A constellation runs all the way round; through the clear bottle the far side shows
   // behind the near side, so the network re-forms into a new pattern every time you turn it. Mark + name below, front and centre.
-  thor: {
+  "clear-bottle": {
     W: 9.4567, H: 9.5267, bg: "#e7e5e4",
     svg: () => {
       const W = 9.4567, cx = W / 2, { nodes, edges } = band({ W, y0: 3.6, y1: 5.0, dmin: 0.66, dmax: 1.15, seed: 7, hubAt: cx });
       return drawNet(nodes, edges, { line: C.ink, lineOp: 0.45, lw: 0.016, hub: C.ink, wrapW: W }) + stacked(cx, 5.95, 0.72, { size: 0.235, gap: 0.24 });
     }
   },
-  // H2Go Bolt, black. The 9.09×10.87 template lands as a ~5 in label on the lower body, wrapping only the front half (~186°, front at 50%).
+  // Apophenia Steel Bottle (blank: H2Go Bolt, black). The 9.09×10.87 template lands as a ~5 in label on the lower body, wrapping only the front half (~186°, front at 50%).
   // A field of random dots, and in it the mark, connected: the pattern found in the noise. Mark + name under it.
-  h2go: {
+  "steel-bottle": {
     W: 9.0867, H: 10.8733, bg: "#18181b",
     svg: () => {
       const W = 9.0867, cx = W / 2, pts = markPts({ cx, cy: 4.7, w: 3.0, h: 3.6, jit: 0.16, seed: 5 });
       return noise({ box: [0.35, 0.3, W - 0.35, 8.2], n: 120, seed: 21, r: 0.2, op: 1.2, pts, clear: 0.28 }) + found({ pts, r: 0.17, lw: 0.075 }) + lockup(cx, 9.45, 0.8, { dark: true, fill: "none" });
     }
   },
-  // All-over-print backpack, front panel (~12.2×16.1). Random dots over the whole bag; one set of them is connected into the mark. Lockup below.
+  // Apophenia Backpack (blank: All-Over Print Minimalist Backpack), front panel (~12.2×16.1). Random dots over the whole bag; one set of them is connected into the mark. Lockup below.
   "backpack-front": {
     W: 12.2, H: 16.1, bg: C.night,
     svg: () => {
@@ -168,7 +169,7 @@ export const pieces = {
         found({ pts, r: 0.13, lw: 0.04 }) + lockup(6.1, 12.95, 0.78, { dark: true });
     }
   },
-  // All-over-print duffle, long side (22×11.5). The mark in the noise, and one of its diagonals keeps going, out towards the ends of the bag.
+  // Apophenia Duffle Bag (blank: All-Over Print Duffle Bag), long side (22×11.5). The mark in the noise, and one of its diagonals keeps going, out towards the ends of the bag.
   // The extended line is Morse: "not crazy" one way, "apophenia" the other.
   "duffle-front": {
     W: 22, H: 11.5, bg: C.night,

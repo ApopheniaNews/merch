@@ -17,15 +17,15 @@ p{font-size:22px;line-height:1.42;margin:0 0 14px;color:#3f3f46}.egg{border-left
 .lab{font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#a1a1aa;margin:18px 0 0}</style>`,
   boards = {
     mug: {
-      t: "White Glossy Mug", s: "Sublimation · 11 / 15 / 20 oz · Fourthwall render",
+      t: "Apophenia Mug", s: "Sublimation · 11 / 15 / 20 oz · Fourthwall render",
       a: pane({ src: "../art/mug/render-1.webp", z: 1.55, oy: 47, cap: "Handle left: the mark and the name" }),
       b: pane({ src: "../art/mug/render-2.webp", z: 1.55, oy: 47, cap: "Handle right: the mark's skeleton, nothing between" }),
       body: `<p>One side is the mark and the name, nothing else. The other is the mark's skeleton pulled wide: its four dots and its top and bottom bars, with nothing between them.</p>
-<p class="egg"><b>Hidden:</b> both bars are Morse code for <b>not crazy</b>.</p>`,
+<p class="egg"><b>Hidden:</b> the bars are Morse code. The top one says <b>apophenia</b>, the bottom one <b>not crazy</b>.</p>`,
       flat: flat("../art/mug/mug-preview.png", "#fff", 250)
     },
     pint: {
-      t: "Shaker Pint Glass", s: "UV print on clear glass · 16 oz · Fourthwall render",
+      t: "Apophenia Pint Glass", s: "UV print on clear glass · 16 oz · Fourthwall render",
       a: pane({ src: "../art/pint/render-1.webp", z: 1.3, oy: 40, bg: "#fff", cap: "Front: the constellation" }),
       b: pane({ src: "../art/pint/render-2.webp", z: 1.3, ox: 35, oy: 48, bg: "#fff", cap: "Turned: the mark and the name round the back" }),
       body: `<p>The hoodie's back constellation, on its own, on the front of the glass.</p>
@@ -33,24 +33,24 @@ p{font-size:22px;line-height:1.42;margin:0 0 14px;color:#3f3f46}.egg{border-left
 <p class="note">On clear glass you'll always see the back through the front, mirrored. The name sits low so that ghost falls under the art, not on it.</p>`,
       flat: flat("../art/pint/pint-ink-preview.png", "#fff", 250)
     },
-    thor: {
-      t: "Thor Clear Tritan Bottle", s: "UV print on clear Tritan · 27 oz · Fourthwall render",
-      a: pane({ src: "../art/thor/render-1.webp", z: 1.45, oy: 52, cap: "Front" }),
-      b: pane({ src: "../art/thor/render-2.webp", z: 1.3, oy: 50, cap: "From above: the far side shows through" }),
+    "clear-bottle": {
+      t: "Apophenia Clear Bottle", s: "UV print on clear Tritan · 27 oz · Fourthwall render",
+      a: pane({ src: "../art/clear-bottle/render-1.webp", z: 1.45, oy: 52, cap: "Front" }),
+      b: pane({ src: "../art/clear-bottle/render-2.webp", z: 1.3, oy: 50, cap: "From above: the far side shows through" }),
       body: `<p>A thin network runs all the way round. Because the bottle is clear, the far side shows through behind the near side, so the network forms a new pattern every time you turn it. The mark and name sit centred under it.</p>
 <p class="egg"><b>The idea:</b> the dots never change, only your angle does.</p>`,
-      flat: flat("../art/thor/thor-preview.png", "#e7e5e4", 300)
+      flat: flat("../art/clear-bottle/clear-bottle-preview.png", "#e7e5e4", 300)
     },
-    h2go: {
-      t: "H2Go Bolt, Black", s: "UV print on stainless steel · 24 oz · Fourthwall render",
-      a: pane({ src: "../art/h2go/render-1.webp", z: 1.5, oy: 72, bg: "#d4d4d8", cap: "Front" }),
-      b: pane({ src: "../art/h2go/render-2.webp", z: 1.4, oy: 74, bg: "#d4d4d8", cap: "From above" }),
+    "steel-bottle": {
+      t: "Apophenia Steel Bottle", s: "Black · UV print on stainless steel · 24 oz · Fourthwall render",
+      a: pane({ src: "../art/steel-bottle/render-1.webp", z: 1.5, oy: 72, bg: "#d4d4d8", cap: "Front" }),
+      b: pane({ src: "../art/steel-bottle/render-2.webp", z: 1.4, oy: 74, bg: "#d4d4d8", cap: "From above" }),
       body: `<p>A field of random dots, and in it a few of them connected into the mark: the pattern found in the noise. The mark and name sit under it.</p>
 <p class="note">The dots are generated, not taken from anything real, and the found mark is drawn a little loose so it looks found rather than stamped.</p>`,
-      flat: flat("../art/h2go/h2go-preview.png", "#18181b", 330)
+      flat: flat("../art/steel-bottle/steel-bottle-preview.png", "#18181b", 330)
     },
     backpack: {
-      t: "Minimalist Backpack", s: "All-over print · 16 × 12 × 5.5 in · my composite",
+      t: "Apophenia Backpack", s: "All-over print · 16 × 12 × 5.5 in · my composite",
       a: pane({ src: "../art/backpack/mockup.jpg", z: 1.18, oy: 50, cap: "Front" }),
       b: pane({ src: "../art/backpack/backpack-front-preview.png", z: 1, bg: "#0b0d17", cap: "Front panel, flat" }),
       body: `<p>Random dots over the whole bag. One set of them is connected, and it's the mark. The lockup sits low on the front, the way the hoodie carries it on the chest.</p>
@@ -58,7 +58,7 @@ p{font-size:22px;line-height:1.42;margin:0 0 14px;color:#3f3f46}.egg{border-left
       flat: ""
     },
     duffle: {
-      t: "Duffle Bag", s: "All-over print · 22 × 11.5 × 11.5 in · my composite",
+      t: "Apophenia Duffle Bag", s: "All-over print · 22 × 11.5 × 11.5 in · my composite",
       a: pane({ src: "../art/duffle/mockup.jpg", z: 1.25, ox: 52, oy: 50, cap: "End panel facing, long side going back" }),
       b: pane({ src: "../art/duffle/duffle-end-preview.png", z: 1, bg: "#0b0d17", h: 560, cap: "End panels, flat" }),
       body: `<p>The end panels carry the mark, big, with the name. The long sides have the mark in the noise, with one of its diagonals carried on toward the ends of the bag.</p>
