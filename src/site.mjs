@@ -38,7 +38,7 @@ const STORE = "https://store.apophenia.news",
       files: [["steel-bottle.png", "Label · 2726×3262 · 9.09 × 10.87 in"], ["board.png", "Approval board"]]
     },
     {
-      id: "backpack", name: "Apophenia Backpack", status: "approved", kind: "All-over print · 16 × 12 × 5.5 in",
+      id: "backpack", name: "Apophenia Backpack", status: "live", link: `${STORE}/products/apophenia-backpack`, kind: "All-over print · 16 × 12 × 5.5 in",
       about: "Random dots over the whole bag. One set of them is connected, and it's the mark. The lockup sits low on the front, the way the hoodie carries it on the chest.",
       note: "Fourthwall can't build all-over-print bags through its API, so this one goes up through their admin designer. The mockup is a composite on their blank photo.",
       img: [["mockup.jpg", "Front, composite"], ["backpack-front-preview.png", "Front panel", "#0b0d17"]],
