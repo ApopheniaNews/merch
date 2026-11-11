@@ -1,0 +1,14 @@
+{
+  "name": "apophenia-merch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "art": "node src/build.mjs --print && node src/build.mjs && node src/hoodie.mjs",
+    "mockups": "uv run --no-project --with numpy --with opencv-python-headless python -I src/mockup.py src/blanks art",
+    "boards": "node src/sheet.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/google-sans-flex": "^5.3.2",
+    "@fontsource-variable/space-grotesk": "^5.3.0"
+  }
+}
