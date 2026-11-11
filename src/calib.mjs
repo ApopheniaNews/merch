@@ -2,7 +2,7 @@
 // usage: node src/calib.mjs → .calib/calib-<name>.png (scratch, not committed); push one through fw.mjs preview to see the wrap
 import { render } from "./render.mjs";
 
-export const AREAS = { mug: [9, 3.5], pint: [9.58, 5.04], "clear-bottle": [9.4567, 9.5267], "steel-bottle": [9.0867, 10.8733] };
+export const AREAS = { mug: [9, 3.5], glass: [9.58, 5.04], "clear-bottle": [9.4567, 9.5267], "steel-bottle": [9.0867, 10.8733] };
 for (const [name, [W, H]] of Object.entries(AREAS)) {
   let s = `<rect width="${W}" height="${H}" fill="#fff"/>`;
   for (let x = 0; x <= W; x += 0.5) s += `<line x1="${x}" x2="${x}" y2="${H}" stroke="${x % 1 ? "#ccc" : "#888"}" stroke-width="0.015"/>`;

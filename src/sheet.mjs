@@ -24,14 +24,14 @@ p{font-size:22px;line-height:1.42;margin:0 0 14px;color:#3f3f46}.egg{border-left
 <p class="egg"><b>Hidden:</b> the bars are Morse code. The top one says <b>apophenia</b>, the bottom one <b>not crazy</b>.</p>`,
       flat: flat("../art/mug/mug-preview.png", "#fff", 250)
     },
-    pint: {
-      t: "Apophenia Pint Glass", s: "UV print on clear glass · 16 oz · Fourthwall render",
-      a: pane({ src: "../art/pint/render-1.webp", z: 1.3, oy: 40, bg: "#fff", cap: "Front: the constellation" }),
-      b: pane({ src: "../art/pint/render-2.webp", z: 1.3, ox: 35, oy: 48, bg: "#fff", cap: "Turned: the mark and the name round the back" }),
+    glass: {
+      t: "Apophenia 16 oz Glass", s: "UV print on clear glass · 16 oz · Fourthwall render",
+      a: pane({ src: "../art/glass/render-1.webp", z: 1.3, oy: 40, bg: "#fff", cap: "Front: the constellation" }),
+      b: pane({ src: "../art/glass/render-2.webp", z: 1.3, ox: 35, oy: 48, bg: "#fff", cap: "Turned: the mark and the name round the back" }),
       body: `<p>The hoodie's back constellation, on its own, on the front of the glass.</p>
 <p>The mark and name sit round the back, about 145° from the art. Fourthwall's print seam is at the exact back, so the name sits just beside it rather than across it.</p>
 <p class="note">On clear glass you'll always see the back through the front, mirrored. The name sits low so that ghost falls under the art, not on it.</p>`,
-      flat: flat("../art/pint/pint-ink-preview.png", "#fff", 250)
+      flat: flat("../art/glass/glass-ink-preview.png", "#fff", 250)
     },
     "clear-bottle": {
       t: "Apophenia Clear Bottle", s: "UV print on clear Tritan · 27 oz · Fourthwall render",

@@ -132,9 +132,9 @@ export const pieces = {
         [[x0, y0, C.indigo], [x1, y0, C.sky], [x0, y1, C.sky], [x1, y1, C.indigo]].map(([x, y, c]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`).join("");
     }
   },
-  // Apophenia Pint Glass (blank: Shaker Pint Glass), 9.58×5.04 wrap, front at 50%. The hoodie's back constellation on the front, on its own. The mark + name go round the back,
+  // Apophenia 16 oz Glass (blank: Fourthwall's 16 oz shaker glass), 9.58×5.04 wrap, front at 50%. The hoodie's back constellation on the front, on its own. The mark + name go round the back,
   // just beside the print seam (which sits at 0%/100%, so nothing straddles it), ~145° from the art.
-  ...Object.fromEntries(["white", "ink"].map((v) => [`pint-${v}`, {
+  ...Object.fromEntries(["white", "ink"].map((v) => [`glass-${v}`, {
     W: 9.58, H: 5.04, bg: v === "white" ? "#1c1917" : "#fff",
     svg: () => {
       const dark = v === "white", cx = 4.79, w = 2.3, top = 1.55, n = hoodieNet(cx - w / 2, top, w, { line: dark ? "#fff" : C.ink, lineOp: dark ? 0.55 : 0.45, lw: 0.014, hub: dark ? "#fff" : C.ink });
@@ -183,6 +183,8 @@ export const pieces = {
         [e1, e2].map(([x, y]) => `<circle cx="${f(x)}" cy="${f(y)}" r="0.12" fill="#fff"/>`).join("") + found({ pts, r: 0.12, lw: 0.035 }) + word(21.2, 10.85, 0.34, C.white, "end", `fill-opacity=".8"`);
     }
   },
+  // Fill for every other bag panel (top, bottom, back, pocket) in the admin designer: the same night and noise, no mark. 24 in square, scale or crop to fit.
+  ...Object.fromEntries([["backpack", 31], ["duffle", 32]].map(([b, seed]) => [`${b}-fill`, { W: 24, H: 24, dpi: 200, bg: C.night, svg: () => `<rect width="24" height="24" fill="${C.night}"/>` + noise({ box: [0, 0, 24, 24], n: 1250, seed, r: 0.17 }) }])),
   // Duffle end panels (11.5×11.5): the mark big, name under it.
   "duffle-end": {
     W: 11.5, H: 11.5, bg: C.night,

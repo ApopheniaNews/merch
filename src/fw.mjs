@@ -31,6 +31,13 @@ export const preview = async (templateId, file, outDir, placementStrategy = "FUL
   return { imageId, customizationId: res.customizationId, n: res.images.length };
 };
 
+// a real product from a print file: created hidden unless publish, priced at Fourthwall's base cost + profit (USD) for every variant
+export const product = async ({ template, file, name, description, profit, colors, sizes, region = "default", strategy = "FULL_REGION", publish = false }) =>
+  call("POST", "/products", { type: "design", productTemplateId: template, name, description, colors, sizes, profitMargin: profit, publishOnCreate: publish, regions: [{ region, imageId: await upload(file), placementStrategy: strategy }] });
+export const get = (p) => call("GET", p);
+export const setState = (id, state) => call("PUT", `/products/${id}/state`, { state });
+export const archive = (id) => call("DELETE", `/products/${id}`);
+
 if (process.argv[1] === new URL(import.meta.url).pathname) {
   const [cmd, ...a] = process.argv.slice(2);
   if (cmd === "preview") console.log(await preview(...a));
