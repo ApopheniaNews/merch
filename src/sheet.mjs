@@ -62,7 +62,7 @@ p{font-size:22px;line-height:1.42;margin:0 0 14px;color:#3f3f46}.egg{border-left
       a: pane({ src: "../art/duffle/mockup.jpg", z: 1.25, ox: 52, oy: 50, cap: "End panel facing, long side going back" }),
       b: pane({ src: "../art/duffle/duffle-end-preview.png", z: 1, bg: "#0b0d17", h: 560, cap: "End panels, flat" }),
       body: `<p>The end panels carry the mark, big, with the name. The long sides have the mark in the noise, with one of its diagonals carried on toward the ends of the bag.</p>
-<p class="egg"><b>Hidden:</b> that line is Morse. One way it says <b>go far</b>, the other way <b>go home</b>. Fitting for a travel bag.</p>`,
+<p class="egg"><b>Hidden:</b> that line is Morse. One way it says <b>not crazy</b>, the other way <b>apophenia</b>.</p>`,
       flat: `<div class="lab">Long side, flat</div>` + flat("../art/duffle/duffle-front-preview.png", "#0b0d17", 330)
     }
   };

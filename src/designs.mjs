@@ -169,14 +169,16 @@ export const pieces = {
     }
   },
   // All-over-print duffle, long side (22×11.5). The mark in the noise, and one of its diagonals keeps going, out towards the ends of the bag.
-  // The extended line is Morse: "go far" one way, "go home" the other.
+  // The extended line is Morse: "not crazy" one way, "apophenia" the other.
   "duffle-front": {
     W: 22, H: 11.5, bg: C.night,
     svg: () => {
       const pts = markPts({ cx: 11.0, cy: 5.75, w: 2.8, h: 3.3, jit: 0.12, seed: 4 }), [, tr, bl, , c] = pts, e1 = onward(c, bl, 22, 11.5, 1.1), e2 = onward(c, tr, 22, 11.5, 1.1),
-        seg = ([ax, ay], [bx, by], g = 0.3) => { const L = Math.hypot(bx - ax, by - ay); return [ax + ((bx - ax) * g) / L, ay + ((by - ay) * g) / L, bx - ((bx - ax) * g) / L, by - ((by - ay) * g) / L]; };
+        seg = ([ax, ay], [bx, by], g = 0.3) => { const L = Math.hypot(bx - ax, by - ay); return [ax + ((bx - ax) * g) / L, ay + ((by - ay) * g) / L, bx - ((bx - ax) * g) / L, by - ((by - ay) * g) / L]; },
+        // dots never wider than one Morse unit, so the gaps stay readable
+        dash = (msg, a, b) => { const s = seg(a, b); return morse(msg, ...s, { w: Math.min(0.05, Math.hypot(s[2] - s[0], s[3] - s[1]) / morseUnits(msg).len), color: C.url, opacity: 0.8 }); };
       return `<rect width="22" height="11.5" fill="${C.night}"/>` + noise({ box: [0, 0, 22, 11.5], n: 560, seed: 14, r: 0.16, pts, lines: [[bl, e1], [tr, e2]], clear: 0.2, avoid: [[20.2, 10.75, 1.4]] }) +
-        morse("go far", ...seg(bl, e1), { w: 0.05, color: C.url, opacity: 0.8 }) + morse("go home", ...seg(tr, e2), { w: 0.05, color: C.url, opacity: 0.8 }) +
+        dash("not crazy", bl, e1) + dash("apophenia", tr, e2) +
         [e1, e2].map(([x, y]) => `<circle cx="${f(x)}" cy="${f(y)}" r="0.12" fill="#fff"/>`).join("") + found({ pts, r: 0.12, lw: 0.035 }) + word(21.2, 10.85, 0.34, C.white, "end", `fill-opacity=".8"`);
     }
   },

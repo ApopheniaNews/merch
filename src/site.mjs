@@ -47,7 +47,7 @@ const STORE = "https://store.apophenia.news",
     {
       id: "duffle", name: "Duffle Bag", status: "review", kind: "All-over print · 22 × 11.5 × 11.5 in",
       about: "The end panels carry the mark, big, with the name. The long sides have the mark in the noise, with one of its diagonals carried on toward the ends of the bag.",
-      hidden: "That line is Morse: <b>go far</b> one way, <b>go home</b> the other.",
+      hidden: "That line is Morse: <b>not crazy</b> one way, <b>apophenia</b> the other.",
       note: "Fourthwall can't render all-over-print bags through its API, so the mockup is a composite on their blank photo.",
       img: [["mockup.jpg", "Composite"], ["duffle-front-preview.png", "Long side", "#0b0d17"], ["duffle-end-preview.png", "End panel", "#0b0d17"]],
       files: [["duffle-front.png", "Long side · 6600×3450 · 22 × 11.5 in"], ["duffle-end.png", "End panel · 3450×3450 · 11.5 in square"], ["board.png", "Approval board"]]
