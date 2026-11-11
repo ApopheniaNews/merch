@@ -185,7 +185,14 @@ export const pieces = {
   },
   // Fill for every other bag panel (top, bottom, back, pocket) in the admin designer: the same night and noise, no mark. 24 in square, scale or crop to fit.
   ...Object.fromEntries([["backpack", 31], ["duffle", 32]].map(([b, seed]) => [`${b}-fill`, { W: 24, H: 24, dpi: 200, bg: C.night, svg: () => `<rect width="24" height="24" fill="${C.night}"/>` + noise({ box: [0, 0, 24, 24], n: 1250, seed, r: 0.17 }) }])),
-  // Duffle end panels (11.5×11.5): the mark big, name under it.
+  // Duffle ends, on Fourthwall's "Sides" designer canvas (27 × 18 in, both ends side by side). The right-hand end (left on the canvas) is mostly
+  // a mesh pocket, so it just gets the noise; the left-hand end (right on the canvas, x 13.9–26.7 in, safe area 14.6–25.95 × 3.9–15.25 in)
+  // gets the mark big, with the name under it.
+  "duffle-sides": {
+    W: 27, H: 18, dpi: 250, bg: C.night,
+    svg: () => `<rect width="27" height="18" fill="${C.night}"/>` + noise({ box: [0, 0, 27, 18], n: 1000, seed: 41, r: 0.16, avoid: [[20.29, 9.6, 4.6]] }) + stacked(20.29, 6.15, 3.8, { dark: true, size: 0.76, gap: 0.85 })
+  },
+  // Duffle end panels (11.5×11.5): the mark big, name under it. (Used for the mockup; the designer takes duffle-sides.)
   "duffle-end": {
     W: 11.5, H: 11.5, bg: C.night,
     svg: () => `<rect width="11.5" height="11.5" fill="${C.night}"/>` + stacked(5.75, 3.2, 3.6, { dark: true, size: 0.72, gap: 0.8 })

@@ -45,12 +45,12 @@ const STORE = "https://store.apophenia.news",
       files: [["backpack-front.png", "Front panel · 3660×4830 · 12.2 × 16.1 in"], ["backpack-fill.png", "Fill for the other panels · 4800 px, 24 in square"], ["board.png", "Approval board"]]
     },
     {
-      id: "duffle", name: "Apophenia Duffle Bag", status: "approved", kind: "All-over print · 22 × 11.5 × 11.5 in",
-      about: "The end panels carry the mark, big, with the name. The long sides have the mark in the noise, with one of its diagonals carried on toward the ends of the bag.",
+      id: "duffle", name: "Apophenia Duffle Bag", status: "live", link: `${STORE}/products/apophenia-duffle-bag`, kind: "All-over print · 22 × 11.5 × 11.5 in",
+      about: "One end carries the mark, big, with the name (the other is mostly a mesh pocket). The long sides have the mark in the noise, with one of its diagonals carried on toward the ends of the bag.",
       hidden: "That line is Morse: <b>not crazy</b> one way, <b>apophenia</b> the other.",
-      note: "Fourthwall can't build all-over-print bags through its API, so this one goes up through their admin designer. The mockup is a composite on their blank photo.",
+      note: "Built in Fourthwall's designer (the API can't make all-over-print bags). The mockup is a composite on their blank photo.",
       img: [["mockup.jpg", "Composite"], ["duffle-front-preview.png", "Long side", "#0b0d17"], ["duffle-end-preview.png", "End panel", "#0b0d17"]],
-      files: [["duffle-front.png", "Long sides, front and back · 6775×4500 · Fourthwall\u2019s 27.1 × 18 in canvas"], ["duffle-end.png", "End panel · 3450×3450 · 11.5 in square"], ["duffle-fill.png", "Fill for the other panels · 4800 px, 24 in square"], ["board.png", "Approval board"]]
+      files: [["duffle-front.png", "Long sides, front and back · 6775×4500 · Fourthwall\u2019s 27.1 × 18 in canvas"], ["duffle-sides.png", "Ends, Fourthwall\u2019s Sides canvas · 6750×4500 · 27 × 18 in"], ["duffle-fill.png", "Fill for the other panels · 4800 px, 24 in square"], ["board.png", "Approval board"]]
     },
   ],
   logo = `<svg viewBox="0 0 120 120" width="40" height="40" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>

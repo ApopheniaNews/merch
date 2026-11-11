@@ -8,5 +8,5 @@ import { render } from "./render.mjs";
 const args = process.argv.slice(2), print = args.includes("--print"), names = args.filter((a) => !a.startsWith("--"));
 for (const n of names.length ? names : Object.keys(pieces)) {
   const { W, H, bg, svg, dpi = 300 } = pieces[n];
-  console.log(render({ svg: svg(), W, H, dpi: print ? dpi : 100, bg: print ? "transparent" : bg, out: new URL(`../art/${n.replace(/-(ink|white|front|end|fill)$/, "")}/${n}${print ? "" : "-preview"}.png`, import.meta.url).pathname }));
+  console.log(render({ svg: svg(), W, H, dpi: print ? dpi : 100, bg: print ? "transparent" : bg, out: new URL(`../art/${n.replace(/-(ink|white|front|end|fill|sides)$/, "")}/${n}${print ? "" : "-preview"}.png`, import.meta.url).pathname }));
 }
