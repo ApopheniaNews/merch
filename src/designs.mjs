@@ -65,30 +65,25 @@ const hoodieNet = (x, y, w, o) => {
   const nodes = NET.nodes.map((n) => ({ x: x + (n.x - x0) * k, y: y + (n.y - y0) * k, r: n.r * k * 1.25, ring: n.ring, hub: n.rgb[0] > 200, c: n.rgb[2] - n.rgb[0] > 140 ? C.sky : C.indigo }));
   return { svg: drawNet(nodes, NET.edges, o), h: (Math.max(...ys) - y0) * k };
 };
-// a seamless band of nodes all the way round a wrap
-const band = ({ W, y0, y1, dmin, dmax, seed, hubAt }) => {
-  const R = rng(seed), wd = (a, b) => Math.hypot(Math.min(Math.abs(a.x - b.x), W - Math.abs(a.x - b.x)), a.y - b.y), nodes = [{ x: hubAt, y: (y0 + y1) / 2, hub: true }];
-  for (let t = 0; t < 4000; t++) {
-    const p = { x: R() * W, y: y0 + R() * (y1 - y0) };
-    if (nodes.every((q) => wd(p, q) >= dmin)) nodes.push(p);
+// a network across a wrap, evenly covered: one node per slot (so there are never holes) at a random height, rows biased top/bottom in turn;
+// then the shortest links that don't cross, until every node has at least two. The hub sits at the front (50%). With wrap the ends join
+// across the seam; without, the first and last nodes sit on the margins so the network ends on a node, never on a cut line.
+const band = ({ W, y0, y1, n, seed, wrap = false, m = 0.25 }) => {
+  const R = rng(seed), s = (wrap ? W : W - 2 * m) / n, dx = (a, b) => { const d = Math.abs(a.x - b.x); return wrap ? Math.min(d, W - d) : d; }, wd = (a, b) => Math.hypot(dx(a, b), a.y - b.y), nodes = [];
+  for (let i = 0; i < n; i++) {
+    const hub = i === (n - 1) / 2, t = i % 2 ? 0.55 + 0.45 * R() : 0.45 * R(), x = wrap ? (i + 0.5 + (R() - 0.5) * 0.6) * s : m + (i === 0 ? 0 : i === n - 1 ? n * s : (i + 0.5 + (R() - 0.5) * 0.6) * s);
+    nodes.push(hub ? { x: W / 2, y: (y0 + y1) / 2, hub } : { x: (x + W) % W, y: y0 + t * (y1 - y0) });
   }
-  const pairs = [];
-  nodes.forEach((p, i) => nodes.forEach((q, j) => j > i && wd(p, q) < dmax && pairs.push([wd(p, q), i, j])));
-  pairs.sort((a, b) => (nodes[b[1]].hub || nodes[b[2]].hub) - (nodes[a[1]].hub || nodes[a[2]].hub) || a[0] - b[0]);
-  const seg = (i, j) => { const p = nodes[i], q = nodes[j], qx = q.x + (Math.abs(q.x - p.x) > W / 2 ? (q.x > p.x ? -W : W) : 0); return [p.x, p.y, qx, q.y]; },
-    cross = ([a, b, c, d], [e, g, h, k]) => {
-      const o = (px, py, qx, qy, rx, ry) => Math.sign((qx - px) * (ry - py) - (qy - py) * (rx - px));
-      return o(a, b, c, d, e, g) * o(a, b, c, d, h, k) < 0 && o(e, g, h, k, a, b) * o(e, g, h, k, c, d) < 0;
-    },
-    deg = nodes.map(() => 0), edges = [];
-  for (const [, i, j] of pairs) {
-    if (deg[i] > (nodes[i].hub ? 5 : 3) || deg[j] > (nodes[j].hub ? 5 : 3)) continue;
-    const s = seg(i, j);
-    if (edges.some(([a, b]) => a !== i && a !== j && b !== i && b !== j && [0, W, -W].some((sh) => { const t = seg(a, b); return cross(s, [t[0] + sh, t[1], t[2] + sh, t[3]]); }))) continue;
-    edges.push([i, j]), deg[i]++, deg[j]++;
-  }
-  nodes.forEach((n, i) => { if (!n.hub) Object.assign(n, { r: [0.034, 0.042, 0.05][(R() * 3) | 0], c: R() < 0.5 ? C.indigo : C.sky, ring: i % 9 === 4 }); else n.r = 0.068; });
-  return { nodes, edges };
+  const sh = (p, q) => (wrap && Math.abs(q.x - p.x) > W / 2 ? (q.x > p.x ? -W : W) : 0), seg = (i, j) => { const p = nodes[i], q = nodes[j]; return [p.x, p.y, q.x + sh(p, q), q.y]; },
+    cross = ([a, b, c, d], [e, g, h, k]) => { const o = (px, py, qx, qy, rx, ry) => Math.sign((qx - px) * (ry - py) - (qy - py) * (rx - px)); return o(a, b, c, d, e, g) * o(a, b, c, d, h, k) < 0 && o(e, g, h, k, a, b) * o(e, g, h, k, c, d) < 0; },
+    free = (i, j) => !edges.some(([a, b]) => a !== i && a !== j && b !== i && b !== j && (wrap ? [0, W, -W] : [0]).some((o) => { const t = seg(a, b); return cross(seg(i, j), [t[0] + o, t[1], t[2] + o, t[3]]); })),
+    pairs = [], edges = [], deg = nodes.map(() => 0), add = (i, j) => (edges.push([i, j]), deg[i]++, deg[j]++);
+  nodes.forEach((p, i) => nodes.forEach((q, j) => j > i && dx(p, q) < 3.2 * s && pairs.push([wd(p, q), i, j])));
+  pairs.sort((a, b) => a[0] - b[0]);
+  for (const [, i, j] of pairs) if (deg[i] < (nodes[i].hub ? 6 : 4) && deg[j] < (nodes[j].hub ? 6 : 4) && free(i, j)) add(i, j);
+  for (const [, i, j] of pairs) if ((deg[i] < 2 || deg[j] < 2) && !edges.some(([a, b]) => (a === i && b === j) || (a === j && b === i)) && free(i, j)) add(i, j);
+  nodes.forEach((q, k) => q.hub ? (q.r = 0.07) : Object.assign(q, { r: [0.036, 0.044, 0.052][(R() * 3) | 0], c: R() < 0.5 ? C.indigo : C.sky, ring: k % 9 === 4 }));
+  return { nodes, edges, deg };
 };
 
 // ── noise and the pattern found in it (all generated, seeded — no real-world data)
@@ -142,13 +137,14 @@ export const pieces = {
         lockup(1.15, 4.05, 0.36, { dark, fill: dark ? "none" : "#fff" });  // low, so its mirror image seen through the glass falls below the art
     }
   }])),
-  // Apophenia Clear Bottle (blank: Thor Clear Tritan Sports Bottle), 9.46×9.53 wrap, front at 50%. A constellation runs all the way round; through the clear bottle the far side shows
+  // Apophenia Clear Bottle (blank: Thor Clear Tritan Sports Bottle), 9.46×9.53 print, front at 50%. Fourthwall prints only ~240° round the front:
+  // the back third is bare, so the network ends on a node at each edge instead of trying to wrap. It runs evenly round, no gaps; through the clear bottle the far side shows
   // behind the near side, so the network re-forms into a new pattern every time you turn it. Mark + name below, front and centre.
   "clear-bottle": {
     W: 9.4567, H: 9.5267, bg: "#e7e5e4",
     svg: () => {
-      const W = 9.4567, cx = W / 2, { nodes, edges } = band({ W, y0: 3.6, y1: 5.0, dmin: 0.66, dmax: 1.15, seed: 7, hubAt: cx });
-      return drawNet(nodes, edges, { line: C.ink, lineOp: 0.45, lw: 0.016, hub: C.ink, wrapW: W }) + stacked(cx, 5.95, 0.72, { size: 0.235, gap: 0.24 });
+      const W = 9.4567, cx = W / 2, { nodes, edges } = band({ W, y0: 3.6, y1: 5.0, n: 25, seed: 7 });
+      return drawNet(nodes, edges, { line: C.ink, lineOp: 0.5, lw: 0.021, hub: C.ink }) + stacked(cx, 5.95, 0.72, { size: 0.235, gap: 0.24 });
     }
   },
   // Apophenia Steel Bottle (blank: H2Go Bolt, black). The 9.09×10.87 template lands as a ~5 in label on the lower body, wrapping only the front half (~186°, front at 50%).

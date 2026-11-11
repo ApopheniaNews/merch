@@ -42,7 +42,7 @@ Headless Chromium does the rendering: it uses Playwright's `chromium_headless_sh
 |---|---|---|---|---|
 | Apophenia Mug | White Glossy Mug | `pro_4v5OfYhyRx62KW5b7Oj6Uw` | 2700×1050 | Handle-left view shows about 0–35%, handle-right about 65–100%. Put one face at ~22% and the other at ~78%. |
 | Apophenia 16 oz Glass | Shaker glass, 16 oz | `pro_KLKGnobKR0u-aO6RghFzxA` | 2874×1512 | Full wrap, front at 50%, seam at 0/100% (the back). Anything on the back shows through the front, mirrored. |
-| Apophenia Clear Bottle | Thor Clear Tritan Sports Bottle | `pro_Ev93jJN7Sg2shZI9WjJKqg` | 2837×2858 | Full wrap of the body, front at 50%. The far side shows through. |
+| Apophenia Clear Bottle | Thor Clear Tritan Sports Bottle | `pro_Ev93jJN7Sg2shZI9WjJKqg` | 2837×2858 | Only ~240° round the front, front at 50%: the back third is bare, so anything that should look continuous must end inside the edges. The far side shows through. |
 | Apophenia Steel Bottle | H2Go Bolt (black) | `pro_lcY8lsUxT0abgQ35lT919g` | 2726×3262 | A ~5 in label on the lower body covering only the front half (~186°), front at 50%. Keep the core within ~30–70% and draw big. |
 | Apophenia Backpack | All-Over Print Minimalist Backpack | `pro_f5fdfe4ae25248499e` | panels | The API refuses it (no backend rendering): use the admin designer. Front = `backpack-front.png`, top and bottom = `backpack-fill.png`. |
 | Apophenia Duffle Bag | All-Over Print Duffle Bag | `pro_4cb50ea9e50d4f83be` | panels | The API refuses it (no backend rendering): use the admin designer. Front and back = `duffle-front.png`, ends = `duffle-end.png`, everything else = `duffle-fill.png`. The API lists the "Sides" area as unavailable, so check where the ends go. |

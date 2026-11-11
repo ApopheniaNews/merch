@@ -19,7 +19,7 @@ const art = (f) => new URL(`../art/${f}`, import.meta.url).pathname, saved = new
     },
     "clear-bottle": {
       template: "pro_Ev93jJN7Sg2shZI9WjJKqg", file: art("clear-bottle/clear-bottle.png"), profit: 8, name: "Apophenia Clear Bottle",
-      description: "<p>A network of dots runs all the way round. The bottle is clear, so the far side shows through the near side, and the pattern changes every time you turn it.</p><p>27 oz (798 ml) BPA-free Tritan, 10.16″ tall. Spill-resistant stainless steel lid with a carry loop.</p>"
+      description: "<p>A network of dots runs round the bottle. It's clear, so the far side shows through the near side, and the pattern changes as you turn it.</p><p>27 oz (798 ml) BPA-free Tritan, 10.16″ tall. Spill-resistant stainless steel lid with a carry loop.</p>"
     },
     "steel-bottle": {
       template: "pro_lcY8lsUxT0abgQ35lT919g", file: art("steel-bottle/steel-bottle.png"), profit: 8, name: "Apophenia Steel Bottle", colors: ["Black"],

@@ -27,7 +27,7 @@ const STORE = "https://store.apophenia.news",
     },
     {
       id: "clear-bottle", name: "Apophenia Clear Bottle", status: "live", link: `${STORE}/products/apophenia-clear-bottle`, kind: "UV on clear Tritan · 27 oz",
-      about: "A thin network runs all the way round. The bottle is clear, so the far side shows through behind the near side and the network forms a new pattern every time you turn it. The mark and name sit centred under it.",
+      about: "A thin network runs round the bottle and ends on a dot at each side. The bottle is clear, so the far side shows through behind the near side and the network forms a new pattern every time you turn it. The mark and name sit centred under it.",
       img: [["render-1.webp", "Front"], ["render-2.webp", "From above"], ["clear-bottle-preview.png", "Print file", "#e7e5e4"]],
       files: [["clear-bottle.png", "Wrap · 2837×2858 · 9.46 × 9.53 in"], ["board.png", "Approval board"]]
     },

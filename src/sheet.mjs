@@ -37,7 +37,7 @@ p{font-size:22px;line-height:1.42;margin:0 0 14px;color:#3f3f46}.egg{border-left
       t: "Apophenia Clear Bottle", s: "UV print on clear Tritan · 27 oz · Fourthwall render",
       a: pane({ src: "../art/clear-bottle/render-1.webp", z: 1.45, oy: 52, cap: "Front" }),
       b: pane({ src: "../art/clear-bottle/render-2.webp", z: 1.3, oy: 50, cap: "From above: the far side shows through" }),
-      body: `<p>A thin network runs all the way round. Because the bottle is clear, the far side shows through behind the near side, so the network forms a new pattern every time you turn it. The mark and name sit centred under it.</p>
+      body: `<p>A thin network runs round the bottle and ends on a dot at each side. Because the bottle is clear, the far side shows through behind the near side, so the network forms a new pattern every time you turn it. The mark and name sit centred under it.</p>
 <p class="egg"><b>The idea:</b> the dots never change, only your angle does.</p>`,
       flat: flat("../art/clear-bottle/clear-bottle-preview.png", "#e7e5e4", 300)
     },
